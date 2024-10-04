@@ -25,6 +25,7 @@ public class MyFirstTestcase extends BaseTest {
            Thread.sleep(2000);
            driver.findElement(By.xpath("//*[@id=\"login_id\"]")).sendKeys("sumangowdaarbi@gmail.com");
            driver.findElement(By.id("nextbtn")).click();
+           Thread.sleep(2000);
            driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("Supreem$1998");
            driver.findElement(By.xpath("//*[@id=\"nextbtn\"]")).click();
 

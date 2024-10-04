@@ -21,13 +21,14 @@ public class BaseTest {
     @BeforeTest
     public void setup() throws IOException, InterruptedException {
         if(driver==null){
-            FileReader fr=new FileReader("C:\\Users\\suman\\IdeaProjects\\SeleniumFramework\\src\\test\\resources\\configfile\\config.properties");
+            System.out.println("The path is "+System.getProperty("user.dir"));
+            FileReader fr=new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\configfile\\config.properties");
             prop.load(fr);
         }
 
         if(prop.getProperty("browser").equalsIgnoreCase("Edge")){
             System.setProperty("webdriver.edge.driver","resources/msedgedriver.exe");//base
-            WebDriver driver= new EdgeDriver();//base
+            driver= new EdgeDriver();//base
             driver.manage().window().maximize();
             driver.get(prop.getProperty("testurl"));
             Thread.sleep(3000);
@@ -43,7 +44,7 @@ public class BaseTest {
 
     @AfterTest
     public void teardown(){
-        driver.close();
+        //driver.close();
         System.out.println(" TEAR down successful");
     }
 }
