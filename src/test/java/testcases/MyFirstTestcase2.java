@@ -1,21 +1,16 @@
 package testcases;
 //import io.github.bonigarcia.wdm.WebDriverManager;
+
 import base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.interactions.Actions;
-
-import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utilities.ReadXLSdata;
 
 
-public class MyFirstTestcase extends BaseTest {
+public class MyFirstTestcase2 extends BaseTest {
 
-      @Test(dataProvider = "testdata")
+      @Test(dataProviderClass = ReadXLSdata.class,dataProvider = "sampledata")
     public void LoginTest(String username,String password) throws InterruptedException {
            System.out.println("MY FIRST TEST");
            //WebDriverManager.edgedriver().setup();
@@ -31,14 +26,6 @@ public class MyFirstTestcase extends BaseTest {
            driver.findElement(By.xpath(loc.getProperty("login_next_button"))).click();
            Thread.sleep(2000);
 
-       }
-
-       @DataProvider(name = "testdata")
-       public Object[][] tData(){
-          return new Object[][]{
-                  {"sumangowdaarbi@gmail.com","Supreem$1998"},
-                  {"sumanagowdaarbi@gmail.com","Supreem$1998"}
-          };
        }
 
 

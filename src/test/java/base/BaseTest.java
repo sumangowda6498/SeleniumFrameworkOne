@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import java.io.FileNotFoundException;
@@ -16,14 +18,20 @@ public class BaseTest {
 
     public static WebDriver driver;
     public static Properties prop=new Properties();
+    public static Properties loc=new Properties();
     public static FileReader fr;
+    public static FileReader fr1;
 
-    @BeforeTest
+   // @BeforeTest
+    @BeforeMethod
     public void setup() throws IOException, InterruptedException {
         if(driver==null){
             System.out.println("The path is "+System.getProperty("user.dir"));
-            FileReader fr=new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\configfile\\config.properties");
+             fr=new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\configfile\\config.properties");
+            fr1=new FileReader(System.getProperty("user.dir")+"\\src\\test\\resources\\configfile\\locators.properties");
+
             prop.load(fr);
+            loc.load(fr1);
         }
 
         if(prop.getProperty("browser").equalsIgnoreCase("Edge")){
@@ -42,9 +50,10 @@ public class BaseTest {
 
     }
 
-    @AfterTest
+   // @AfterTest
+    @AfterMethod
     public void teardown(){
-        //driver.close();
+        driver.close();
         System.out.println(" TEAR down successful");
     }
 }
